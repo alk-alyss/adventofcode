@@ -1,11 +1,11 @@
-text = []
+nums = []
 with open("input.txt", "r") as f:
-	text = f.readlines()
+	nums = f.readlines()
 
-prevNum = int(text[0]) + int(text[1]) + int(text[2])
+prevNum = nums[0] + nums[1] + nums[2]
 result = 0
-for i in range(len(text)-2):
-	num = int(text[i]) + int(text[i+1]) + int(text[i+2])
+for i in range(len(nums)-2):
+	num = nums[i] + nums[i+1] + nums[i+2]
 	if num > prevNum:
 		result += 1
 	prevNum = num
