@@ -1,6 +1,6 @@
 nodes = {}
-with open("input.txt") as file:
-	for line in lines:
+with open("input.txt") as f:
+	for line in f.readlines():
 		start,end = line.split("-")
 
 		if start not in nodes:
