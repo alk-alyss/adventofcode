@@ -1,3 +1,4 @@
+allDividers = 1
 class Monkey:
     def __init__(self, items, operation, test, true, false):
         self.items = items
@@ -32,6 +33,8 @@ class Monkey:
                 case '/':
                     item /= operand
 
+            item %= allDividers
+
             if item % self.test == 0:
                 monkeys[self.true].getItem(item)
                 # print(f"throw to monkey {self.true}")
@@ -49,7 +52,7 @@ class Monkey:
         return str(self.items)
 
 monkeys = []
-with open("example.txt", "r") as f:
+with open("input.txt", "r") as f:
     text = f.read()
 
     text = text.strip().split('\n\n')
@@ -62,6 +65,7 @@ with open("example.txt", "r") as f:
         operation = t[2].split(':')[1].strip().split('=')[1].strip()
 
         test = int(t[3].split(':')[1].strip().split()[-1])
+        allDividers *= test
 
         true = int(t[4].split(':')[1].strip().split()[-1])
         false = int(t[5].split(':')[1].strip().split()[-1])
@@ -69,7 +73,7 @@ with open("example.txt", "r") as f:
         monkeys.append(Monkey(items, operation, test, true, false))
 
 result = [0 for _ in range(len(monkeys))]
-for i in range(500):
+for i in range(10000):
     for j, monkey in enumerate(monkeys):
         result[j] += monkey.inspectItems()
 
